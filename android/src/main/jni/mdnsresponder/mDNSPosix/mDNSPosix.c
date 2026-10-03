@@ -1413,7 +1413,7 @@ mDNSexport void mDNSPosixEmbeddedWakeLoop(void)
 	{
 	if (gWakePipe[1] >= 0)
 		{
-		if (write(gWakePipe[1], "", 1) < 0) { }	// A full pipe means the loop is about to wake anyway
+		// WIP: wake-up disabled, to show that the harness notices
 		}
 	}
 
