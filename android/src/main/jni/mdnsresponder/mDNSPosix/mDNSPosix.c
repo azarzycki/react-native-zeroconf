@@ -1421,14 +1421,13 @@ mDNSexport void    mDNSPlatformLock   (const mDNS *const m)
 	{
 	(void) m;	// Unused
 	pthread_once(&gCoreLockOnce, InitCoreLockAndWakePipe);
-	pthread_mutex_lock(&gCoreLock);
+	// WIP: lock disabled, to show that the harness catches the original crash
 	}
 
 mDNSexport void    mDNSPlatformUnlock (const mDNS *const m)
 	{
 	(void) m;	// Unused
 	int fromLoopThread = gLoopThreadSet && pthread_equal(pthread_self(), gLoopThread);
-	pthread_mutex_unlock(&gCoreLock);
 	if (!fromLoopThread) mDNSPosixEmbeddedWakeLoop();
 	}
 
